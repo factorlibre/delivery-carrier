@@ -20,7 +20,7 @@
 ##############################################################################
 
 {'name': 'Base module for carrier labels',
- 'version': '1.2',
+ 'version': '8.0.1.2.0',
  'author': "Camptocamp,Akretion,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'Delivery',
@@ -31,6 +31,7 @@
           'stock_view.xml',
           'res_config_view.xml',
           'security/ir.model.access.csv',
+          'wizard/manifest_wizard_view.xml',
           ],
  'tests': [],
  'installable': True,
