@@ -1,9 +1,21 @@
-Base module for carrier labels
+Module for SEUR carrier labels
 ==============================
 
-This module adds a button on delivery orders to generate a label as an
-attachement. This module doesn't do anything by itself, it serves as a
-base module for other carrier-specific modules.
+This module allows to:
+ * Generate label and tracking number
+ * Generate manifesto
+
+TODO
+----
+
+ * Cash on delivery
+ * Edit/delete delivery tracking
+ * Customs management
+ * ...
+
+EXTRA DEPENDENCIES
+------------------
+This module use the Seur API: https://pypi.python.org/pypi/seur
 
 Credits
 =======
@@ -11,10 +23,6 @@ Credits
 Contributors
 ------------
 
-* David BEAL <david.beal@akretion.com>
-* Sébastien BEAU <sebastien.beau@akretion.com>
-* Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Alexis de Lattre <alexis.delattre@akretion.com>
 * Ismael Calvo <ismael.calvo@factorlibre.com>
 
 Maintainer
