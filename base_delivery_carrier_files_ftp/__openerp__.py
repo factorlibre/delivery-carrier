@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2015 FactorLibre (http://www.factorlibre.com)
-#                  Ismael Calvo <ismael.calvo@factorlibre.com>
+#                  Hugo Santos <hugo.santos@factorlibre.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,20 +19,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
-
-
-class SeurConfig(models.Model):
-    _name = 'seur.config'
-
-    name = fields.Char('Name', required=True)
-    vat = fields.Char('VAT', required=True)
-    integration_code = fields.Char('Integration Code', required=True)
-    accounting_code = fields.Char('Accounting Code', required=True)
-    franchise_code = fields.Char('Franchise Code', required=True)
-    username = fields.Char('Username', required=True)
-    password = fields.Char('Password', required=True)
-    file_type = fields.Selection([
-        ('pdf', 'PDF'),
-        ('txt', 'TXT')
-    ], string="File type", required=True)
+{
+    'name': 'Base module for picking carrier files upload to FTP',
+    'version': '1.0',
+    'author': "FactorLibre, Odoo Community Association (OCA)",
+    'category': 'Generic Modules/Warehouse',
+    'depends': [
+        'base_delivery_carrier_files'
+    ],
+    'website': 'http://factorlibre.com',
+    'data': [
+        'view/carrier_file_view.xml'
+    ],
+    'installable': True,
+    'auto_install': False,
+    'license': 'AGPL-3',
+    'external_dependencies': {
+        'python': ['ftplib'],
+    }
+}
