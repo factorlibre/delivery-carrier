@@ -157,7 +157,7 @@ class StockPicking(models.Model):
             senderprovince.text = warehouse_address.state_id.name
         if warehouse_address.zip:
             senderzip = etree.SubElement(consignsender, "postcode")
-            senderzip.text = warehouse_address.zip.zfill(5)
+            senderzip.text = warehouse_address.zip
         sendercountry = etree.SubElement(consignsender, "country")
         sendercountry.text = warehouse_address.country_id.code or ''
 
@@ -183,7 +183,7 @@ class StockPicking(models.Model):
             deliveryprovince.text = self.partner_id.state_id.name
         if self.partner_id.zip:
             deliveryzip = etree.SubElement(consigndelivery, "postcode")
-            deliveryzip.text = self.partner_id.zip.zfill(5)
+            deliveryzip.text = self.partner_id.zip
         deliverycountry = etree.SubElement(consigndelivery, "country")
         deliverycountry.text = self.partner_id.country_id.code or ''
 
@@ -327,7 +327,7 @@ class StockPicking(models.Model):
                        'con_div_id': [3, service_codes[3]],
                        'con_prd_id_contr': [4, service_codes[4]],
                        'con_ins_am': [13, ''],
-                       'con_cuy_id_ins': [3, ''],
+                       'con_cuy_id_ins': [3, 'EUR'],
                        'con_cuy_id_cust_ins': [3, ''],
                        'con_packing_ds': [20, 'BOX'],
                        'con_clnt_ref_tx': [24, self.name],
@@ -336,7 +336,7 @@ class StockPicking(models.Model):
                        collection_date[:collection_date.index('T')].
                        replace('-', '')],
                        'con_coll_tm_hh': [4, ''],
-                       'con_val_of_goods_am': [13, ''],
+                       'con_val_of_goods_am': [13, toplainstr(1, 2)],
                        'con_cuy_id_val_of_goods': [3, 'EUR'],
                        'con_cuy_id_cust_val_of_goods': [3, 'EUR'],
                        'con_oc_tot_vl': [6, toplainstr((
@@ -395,8 +395,8 @@ class StockPicking(models.Model):
                        warehouse_address.country_id and
                        warehouse_address.country_id.code or ''],
                        'cpn_cpf_tel_1_id_s': [16, ''],
-                       'cpn_city_nm_s': [30, ''],
-                       'cpn_cpf_last_nm_s': [22, warehouse_address.city or ''],
+                       'cpn_city_nm_s': [30, warehouse_address.city or ''],
+                       'cpn_cpf_last_nm_s': [22, ''],
                        'cpn_fax_1_id_s': [16, ''],
                        'cpn_telex_1_id_s': [9, ''],
                        'cpn_prv_nm_s': [30, ''],
