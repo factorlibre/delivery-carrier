@@ -359,7 +359,7 @@ class StockPicking(models.Model):
                        'con_delivery_in_in': [217, ''],
                        'con_cod_am': [13, ''],
                        'con_cuy_id_cod': [3, ''],
-                       'con_cust_trade_tx': [121, ''],
+                       'con_cust_trade_tx': [120, ''],
                        'con_goods_ds': [30, 'BOX'],
                        'con_ooq_am': [36, ''],
                        'con_un_cd': [4, ''],
@@ -587,9 +587,9 @@ class StockPicking(models.Model):
 
         lines_manifest = str_line00 + \
             "\n" + str_line01 + \
-            "\n" + str_line02 + \
             "\n" + str_line03s + \
-            "\n" + str_line03r
+            "\n" + str_line03r + \
+            "\n" + str_line02
         try:
             host = "express.tnt.com"
             url = "/expresslabel/documentation/getlabel"
