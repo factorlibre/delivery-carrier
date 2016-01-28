@@ -41,6 +41,7 @@ class ShippingLabel(models.Model):
         """ To inherit to add file type """
         res = super(ShippingLabel, self)._get_file_type_selection()
         res.append(('txt', 'TXT'))
+        res = list(set(res))
         return res
 
 
@@ -54,6 +55,20 @@ class StockPicking(models.Model):
         selection='_get_seur_products', string='Seur Product Code',
         default=False)
 
+    @api.model
+    def create(self, vals):
+        res = super(StockPicking, self).create(vals)
+        if 'carrier_id' in vals:
+            res.carrier_id_change()
+        return res
+
+    @api.one
+    def write(self, vals):
+        res = super(StockPicking, self).write(vals)
+        if 'carrier_id' in vals:
+            self.carrier_id_change()
+        return res
+
     def _get_seur_services(self):
         return self.env['delivery.carrier'].SEUR_SERVICES
 
@@ -61,8 +76,9 @@ class StockPicking(models.Model):
         return self.env['delivery.carrier'].SEUR_PRODUCTS
 
     @api.onchange('carrier_id')
-    def carrier_id_onchange(self):
-        if not self.carrier_id:
+    def carrier_id_change(self):
+        super(StockPicking, self).carrier_id_change()
+        if not self.carrier_id or self.carrier_id.type != 'seur':
             return
         carrier = self.carrier_id
         self.seur_service_code = carrier.seur_service_code
@@ -104,19 +120,19 @@ class StockPicking(models.Model):
             connect = seur_picking.test_connection()
             if connect != 'Connection successfully':
                 raise exceptions.Warning(
-                    _('Error conecting with SEUR:\n%s' % connect))
+                    _('Error connecting with SEUR:\n%s') % connect)
         except HTTPError, e:
             raise exceptions.Warning(
-                _('Error conecting with SEUR try later:\n%s' % e))
+                _('Error connecting with SEUR try later:\n%s') % e)
 
         data = self._get_label_data()
         tracking_ref, label, error = seur_picking.create(data)
 
         if error:
             raise exceptions.Warning(
-                _('Error sending label to SEUR\n%s' % error))
+                _('Error sending label to SEUR\n%s') % error)
 
-        self.write({'carrier_tracking_ref': tracking_ref})
+        self.carrier_tracking_ref = tracking_ref
 
         if config.file_type == 'pdf':
             label = label.decode('base64')
@@ -131,7 +147,7 @@ class StockPicking(models.Model):
         partner = self.partner_id.parent_id or self.partner_id
         if not self.seur_service_code or not self.seur_product_code:
             raise exceptions.Warning(_(
-                'Please select Seur service and product codes in picking'))
+                'Please select SEUR service and product codes in picking'))
         international = False
         warehouse = self.picking_type_id and \
             self.picking_type_id.warehouse_id or False
@@ -150,7 +166,7 @@ class StockPicking(models.Model):
             'total_bultos': self.number_of_packages or '1',
             'total_kilos': self.weight or '1',
             'peso_bulto': self.weight_net or '1',
-            'observaciones': self.note or '',
+            'observaciones': self.note and unidecode(self.note) or '',
             'referencia_expedicion': unidecode(self.name),
             'ref_bulto': '',
             'clave_portes': 'F',
@@ -158,7 +174,7 @@ class StockPicking(models.Model):
             'valor_reembolso': '',
             'cliente_nombre': unidecode(partner.name),
             'cliente_direccion': unidecode(partner.street +
-                                           (partner.street2 or '')),
+                                           (' ' + partner.street2 or '')),
             'cliente_tipovia': 'CL',
             'cliente_tnumvia': 'N',
             'cliente_numvia': ' ',
@@ -166,8 +182,9 @@ class StockPicking(models.Model):
             'cliente_piso': '',
             'cliente_puerta': '',
             'cliente_poblacion': unidecode(partner.city),
-            'cliente_cpostal': unidecode(partner.zip) and
-            unidecode(partner.zip.replace(" ", "")) or unidecode(partner.zip),
+            'cliente_cpostal': (partner.zip and
+                                unidecode(partner.zip.replace(" ", "")) or
+                                self.warn(_('ZIP'), _('partner'))),
             'cliente_pais': unidecode(partner.country_id.code),
             'cliente_email': unidecode(partner.email or ''),
             'cliente_telefono': unidecode(
@@ -176,6 +193,10 @@ class StockPicking(models.Model):
             'id_mercancia': international and '400' or '',
         }
         return data
+
+    def warn(self, field, for_str):
+        raise exceptions.Warning(
+            _('Please, enter a %s for %s') % (field, for_str))
 
     @api.multi
     def generate_shipping_labels(self, package_ids=None):
