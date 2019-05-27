@@ -1,0 +1,497 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_carrier_seur
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-07 16:06+0000\n"
+"PO-Revision-Date: 2019-03-07 17:08+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:390
+#, python-format
+msgid ""
+"\n"
+"            PICKUP TIMES ERROR\n"
+"\n"
+"             - The 'to' hour has to be greater than 'from'\n"
+"             - Must have a two hours margin at least.\n"
+"             - The range can start in the morning and end in the afternoon.\n"
+"\n"
+"            Examples:\n"
+"             - Morning from: 10:30 to: 12:30\n"
+"             - Evening from: 16:00 to 18:00\n"
+"             or\n"
+"             - Morning from: 14:00 to: 'empty'\n"
+"             - Evening from: 'empty' to 16:00\n"
+"            "
+msgstr ""
+"\n"
+"            ERROR DE HORAS DE RECOGIDA\n"
+"\n"
+"             - La hora 'a' ha de ser mayor que la 'de'\n"
+"             - Debe haber al menos un margen de dos horas.\n"
+"             - El rango puede empezar por la mañana y terminar por la tarde.\n"
+"\n"
+"            Ejemplos:\n"
+"             - Mañana de: 10:30 a: 12:30\n"
+"             - Tarde de: 16:00 a 18:00\n"
+"             ó\n"
+"             - Mañana de: 14:00 a: 'vacío'\n"
+"             - Tarde de: 'vacío' a 16:00\n"
+"            "
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,help:delivery_carrier_seur.field_shopify_stock_picking_pickup_evening_hour_from
+#: model:ir.model.fields,help:delivery_carrier_seur.field_shopify_stock_picking_pickup_morning_hour_from
+#: model:ir.model.fields,help:delivery_carrier_seur.field_stock_picking_pickup_evening_hour_from
+#: model:ir.model.fields,help:delivery_carrier_seur.field_stock_picking_pickup_morning_hour_from
+msgid ""
+"\n"
+"        - The 'to' hour has to be greater than 'from'\n"
+"        - Must have a two hours margin at least.\n"
+"        - The range can start in the morning and end in the afternoon.\n"
+"\n"
+"        Examples:\n"
+"         - Morning from: 10:30 to: 12:30\n"
+"         - Evening from: 16:00 to 18:00\n"
+"         or\n"
+"         - Morning from: 14:00 to: 'empty'\n"
+"         - Evening from: 'empty' to 16:00"
+msgstr ""
+"\n"
+"        - The 'to' hour has to be greater than 'from'\n"
+"        - Must have a two hours margin at least.\n"
+"        - The range can start in the morning and end in the afternoon.\n"
+"\n"
+"        Examples:\n"
+"         - Morning from: 10:30 to: 12:30\n"
+"         - Evening from: 16:00 to 18:00\n"
+"         or\n"
+"         - Morning from: 14:00 to: 'empty'\n"
+"         - Evening from: 'empty' to 16:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "09:00"
+msgstr "09:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "09:30"
+msgstr "09:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "10:00"
+msgstr "10:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "10:30"
+msgstr "10:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "11:00"
+msgstr "11:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+msgid "11:30"
+msgstr "11:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+#: selection:stock.picking,pickup_morning_hour_to:0
+msgid "12:00"
+msgstr "12:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+#: selection:stock.picking,pickup_morning_hour_to:0
+msgid "12:30"
+msgstr "12:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+#: selection:stock.picking,pickup_morning_hour_to:0
+msgid "13:00"
+msgstr "13:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+#: selection:stock.picking,pickup_morning_hour_to:0
+msgid "13:30"
+msgstr "13:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_morning_hour_from:0
+#: selection:stock.picking,pickup_morning_hour_to:0
+msgid "14:00"
+msgstr "14:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "16:00"
+msgstr "16:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "16:30"
+msgstr "16:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "17:00"
+msgstr "17:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "17:30"
+msgstr "17:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "18:00"
+msgstr "18:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "18:30"
+msgstr "18:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "19:00"
+msgstr "19:00"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "19:30"
+msgstr "19:30"
+
+#. module: delivery_carrier_seur
+#: selection:stock.picking,pickup_evening_hour_from:0
+#: selection:stock.picking,pickup_evening_hour_to:0
+msgid "20:00"
+msgstr "20:00"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_accounting_code
+msgid "Accounting Code"
+msgstr "Código cuenta contable"
+
+#. module: delivery_carrier_seur
+#: model:ir.model,name:delivery_carrier_seur.model_delivery_carrier
+msgid "Carrier"
+msgstr "Forma de envío"
+
+#. module: delivery_carrier_seur
+#: model:ir.actions.server,name:delivery_carrier_seur.check_tracking_status_cron_ir_actions_server
+#: model:ir.cron,cron_name:delivery_carrier_seur.check_tracking_status_cron
+#: model:ir.cron,name:delivery_carrier_seur.check_tracking_status_cron
+msgid "Check Picking Tracking Status Seur"
+msgstr "Comprobar estado de seguimiento en SEUR"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_default_weight
+msgid "Default Weight"
+msgstr "Peso por defecto"
+
+#. module: delivery_carrier_seur
+#: model:ir.model,name:delivery_carrier_seur.model_manifest_wizard
+msgid "Delivery carrier manifest wizard"
+msgstr "Wizard Manifiesto transportista"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/wizard/manifest_wizard.py:46
+#, python-format
+msgid ""
+"Error generating SEUR manifest:\n"
+"%s"
+msgstr ""
+"Error generando el manifiesto de SEUR:\n"
+"%s"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:451
+#, python-format
+msgid ""
+"Error: %s\n"
+"\n"
+"%s"
+msgstr ""
+"Error: %s\n"
+"\n"
+"%s"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_file_type
+msgid "File type"
+msgstr "Tipo de fichero"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_franchise_code
+msgid "Franchise Code"
+msgstr "Código de franquicia"
+
+#. module: delivery_carrier_seur
+#: model:ir.ui.view,arch_db:delivery_carrier_seur.view_picking_withcarrier_out_form
+msgid "Generate Pickup"
+msgstr "Generar Recogida"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_integration_code
+msgid "Integration Code"
+msgstr "Código de integración"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_is_test
+msgid "Is a test?"
+msgstr "Es una prueba?"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:226
+#: code:addons/delivery_carrier_seur/model/stock.py:425
+#, python-format
+msgid "No SEUR Config defined in carrier"
+msgstr "Configuración de SEUR no definida en el transportista"
+
+#. module: delivery_carrier_seur
+#: selection:seur.config,file_type:0
+msgid "PDF"
+msgstr "PDF"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_cit_password
+msgid "Password CIT"
+msgstr "Contraseña CIT"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_ws_password
+msgid "Password WS"
+msgstr "Contraseá WS"
+
+#. module: delivery_carrier_seur
+#: model:ir.ui.view,arch_db:delivery_carrier_seur.view_picking_pickup_date_form
+msgid "Pickup evening"
+msgstr "Recogida tarde"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_shopify_stock_picking_pickup_evening_hour_from
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_stock_picking_pickup_evening_hour_from
+msgid "Pickup evening hour from"
+msgstr "Recogida de tarde desde"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_shopify_stock_picking_pickup_evening_hour_to
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_stock_picking_pickup_evening_hour_to
+msgid "Pickup evening hour to"
+msgstr "Recogida de tarde hasta"
+
+#. module: delivery_carrier_seur
+#: model:ir.ui.view,arch_db:delivery_carrier_seur.view_picking_pickup_date_form
+msgid "Pickup morning"
+msgstr "Recogida mañana"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_shopify_stock_picking_pickup_morning_hour_from
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_stock_picking_pickup_morning_hour_from
+msgid "Pickup morning hour from"
+msgstr "Recogida de mañana desde"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_shopify_stock_picking_pickup_morning_hour_to
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_stock_picking_pickup_morning_hour_to
+msgid "Pickup morning hour to"
+msgstr "Recogida de mañana hasta"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:229
+#: code:addons/delivery_carrier_seur/model/stock.py:428
+#, python-format
+msgid "Please define an address in the %s warehouse"
+msgstr "Por favor defina una dirección en el almacén %s"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:327
+#, python-format
+msgid "Please select SEUR service and product codes in picking"
+msgstr "Por favor seleccione unos códigos de servicio y producto de SEUR en el albarán"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:678
+#, python-format
+msgid "Please, enter a %s for %s"
+msgstr "Por favor, introduzca %s para %s"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:556
+#, python-format
+msgid "Province %s the client %s ,not found in the seur system"
+msgstr "La provincia %s del cliente %s ,no se encuentra en la base de datos de seur. Corríjalo e inténtelo de nuevo"
+
+#. module: delivery_carrier_seur
+#: model:ir.actions.act_window,name:delivery_carrier_seur.seur_config_action
+#: model:ir.ui.menu,name:delivery_carrier_seur.seur_config_menu
+msgid "SEUR"
+msgstr "SEUR"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_delivery_carrier_seur_config_id
+#: model:ir.ui.view,arch_db:delivery_carrier_seur.seur_config_form_view
+#: model:ir.ui.view,arch_db:delivery_carrier_seur.seur_config_tree_view
+msgid "SEUR Config"
+msgstr "Configuración SEUR"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_seur_expedition_sequence
+msgid "SEUR Expedition Sequence"
+msgstr "Secuencia de expedición SEUR"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,help:delivery_carrier_seur.field_seur_config_default_weight
+msgid "SEUR requires a default weight of 1. If the product has a specific weight, will be applied this."
+msgstr "SEUR requiere un peso por defecto de 1. Si el producto tiene un peso especifico definido se aplicará este."
+
+#. module: delivery_carrier_seur
+#: model:ir.model,name:delivery_carrier_seur.model_shipping_label
+msgid "Shipping Label"
+msgstr "Etiqueta de envío"
+
+#. module: delivery_carrier_seur
+#: selection:seur.config,file_type:0
+msgid "TXT"
+msgstr "TXT"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:529
+#, python-format
+msgid "The customer phone is required"
+msgstr "El teléfono del cliente es obligatorio"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:523
+#, python-format
+msgid "The phone for your company is required"
+msgstr "El teléfono de su compañía es obligatorio"
+
+#. module: delivery_carrier_seur
+#: model:ir.model,name:delivery_carrier_seur.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,help:delivery_carrier_seur.field_seur_config_cit_password
+#: model:ir.model.fields,help:delivery_carrier_seur.field_seur_config_cit_username
+msgid "Used for cit.seur.com webservice (generate labels)"
+msgstr "Usado por el webservice de cit.seur.com (Generar etiquetas)"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,help:delivery_carrier_seur.field_seur_config_ws_password
+#: model:ir.model.fields,help:delivery_carrier_seur.field_seur_config_ws_username
+msgid "Used for ws.seur.com webservice (pickup services)"
+msgstr "Usado para el servicio web ws.seur.com (servicios de recogida)"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_cit_username
+msgid "Username CIT"
+msgstr "Usuario CIT"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_ws_username
+msgid "Username WS"
+msgstr "Usuario WS"
+
+#. module: delivery_carrier_seur
+#: model:ir.model.fields,field_description:delivery_carrier_seur.field_seur_config_vat
+msgid "VAT"
+msgstr "NIF"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:377
+#, python-format
+msgid "ZIP"
+msgstr "ZIP"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:377
+#, python-format
+msgid "partner"
+msgstr "empresa"
+
+#. module: delivery_carrier_seur
+#: model:ir.model,name:delivery_carrier_seur.model_seur_config
+msgid "seur.config"
+msgstr "seur.config"
+
+#. module: delivery_carrier_seur
+#: code:addons/delivery_carrier_seur/model/stock.py:287
+#, python-format
+msgid ""
+"{0}\n"
+"\n"
+"{1}"
+msgstr ""
+"{0}\n"
+"\n"
+"{1}"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="base_delivery_carrier_label.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <button name="action_generate_carrier_label" states="draft,waiting,confirmed" string="Generate Pickup" type="object" attrs="{'invisible': [('is_pickup', '!=', True)]}"/>
+            </field>
+            <field name="carrier_code" position="attributes">
+                    <attribute name="attrs">{'invisible': [('carrier_type', '=', 'seur')]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_pickup_date_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery_pickup_change.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <field name="pickup_date" position="after">
+                <label for="pickup_morning_hour_from" string="Pickup morning" class="oe_inline"/>
+                <div>
+                    <field name="pickup_morning_hour_from" class="oe_inline"/> -
+                    <field name="pickup_morning_hour_to" class="oe_inline"/>
+                </div>
+                <label for="pickup_evening_hour_from" string="Pickup evening"/>
+                <div>
+                    <field name="pickup_evening_hour_from" class="oe_inline"/> -
+                    <field name="pickup_evening_hour_to" class="oe_inline"/>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2015 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<odoo>
+
+    <record id="seur_001" model="delivery.carrier.template.option">
+        <field name="name">SEUR - 24</field>
+        <field name="description">Servicio básico de la compañia, entrega de paquetes en cualquier parte de la península o islas de Portugal, al día siguiente</field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">001</field>
+    </record>
+
+    <record id="seur_003" model="delivery.carrier.template.option">
+        <field name="name">SEUR - 10</field>
+        <field name="description">Envío de paqueteria urgente con entrega antes de las 10 a.m. del día siguiente a su recogida. Cobertura nacional: península, Ceuta, Melilla, Baleares y Canarias.</field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">003</field>
+    </record>
+
+    <record id="seur_005" model="delivery.carrier.template.option">
+        <field name="name">MISMO DIA</field>
+        <field name="description">Entrega de envíos urgentes el mismo día de la recogida. Servicio solo para España, Portugal y Canarias, consultar origen. No admite otras soluciones especiales.</field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">005</field>
+    </record>
+
+    <record id="seur_007" model="delivery.carrier.template.option">
+        <field name="name">COURIER</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">007</field>
+    </record>
+
+    <record id="seur_009" model="delivery.carrier.template.option">
+        <field name="name">SEUR 13:30</field>
+        <field name="description">Aprovéchate de nuestro servicio de entrega urgente, tu envío llegará antes de las 13:30 a.m. del día hábil siguiente a su recogida en territorio nacional.</field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">009</field>
+    </record>
+
+    <record id="seur_013" model="delivery.carrier.template.option">
+        <field name="name">SEUR - 72</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">013</field>
+    </record>
+
+    <record id="seur_015" model="delivery.carrier.template.option">
+        <field name="name">S-48</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">015</field>
+    </record>
+
+    <record id="seur_017" model="delivery.carrier.template.option">
+        <field name="name">MARITIMO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">017</field>
+    </record>
+
+    <record id="seur_019" model="delivery.carrier.template.option">
+        <field name="name">NETEXPRESS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">019</field>
+    </record>
+
+    <record id="seur_021" model="delivery.carrier.template.option">
+        <field name="name">DEVOLUCIONES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">021</field>
+    </record>
+
+    <record id="seur_025" model="delivery.carrier.template.option">
+        <field name="name">DEVOLUCION FRIO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">025</field>
+    </record>
+
+    <record id="seur_031" model="delivery.carrier.template.option">
+        <field name="name">ENTREGA PARTIC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">031</field>
+    </record>
+
+    <record id="seur_035" model="delivery.carrier.template.option">
+        <field name="name">GRDES SUPERFIC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">035</field>
+    </record>
+
+    <record id="seur_037" model="delivery.carrier.template.option">
+        <field name="name">CARGO EXPRESS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">037</field>
+    </record>
+
+    <record id="seur_039" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 07-08</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">039</field>
+    </record>
+
+    <record id="seur_041" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 08-10</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">041</field>
+    </record>
+
+    <record id="seur_043" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 10-12</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">043</field>
+    </record>
+
+    <record id="seur_045" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 12-14</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">045</field>
+    </record>
+
+    <record id="seur_047" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 14-17</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">047</field>
+    </record>
+
+    <record id="seur_049" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 17-19</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">049</field>
+    </record>
+
+    <record id="seur_051" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 19-21</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">051</field>
+    </record>
+
+    <record id="seur_053" model="delivery.carrier.template.option">
+        <field name="name">SEUR FRANJA HORARIA 20-22</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">053</field>
+    </record>
+
+    <record id="seur_055" model="delivery.carrier.template.option">
+        <field name="name">SEUR SUNDAY</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">055</field>
+    </record>
+
+    <record id="seur_069" model="delivery.carrier.template.option">
+        <field name="name">SEUR DIRECTO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">069</field>
+    </record>
+
+    <record id="seur_077" model="delivery.carrier.template.option">
+        <field name="name">CLASSIC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">077</field>
+    </record>
+
+    <record id="seur_079" model="delivery.carrier.template.option">
+        <field name="name">CARGO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">079</field>
+    </record>
+
+    <record id="seur_083" model="delivery.carrier.template.option">
+        <field name="name">SEUR 8:30</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">083</field>
+    </record>
+
+    <record id="seur_085" model="delivery.carrier.template.option">
+        <field name="name">SEUR PRIMERA HORA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">085</field>
+    </record>
+
+    <record id="seur_301" model="delivery.carrier.template.option">
+        <field name="name">OTRAS PLAZAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">301</field>
+    </record>
+
+    <record id="seur_303" model="delivery.carrier.template.option">
+        <field name="name">POLIZAS SEGUROS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">303</field>
+    </record>
+
+    <record id="seur_305" model="delivery.carrier.template.option">
+        <field name="name">ALMACENAJE</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">305</field>
+    </record>
+
+    <record id="seur_307" model="delivery.carrier.template.option">
+        <field name="name">GTOS FINANCIERO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">307</field>
+    </record>
+
+    <record id="seur_309" model="delivery.carrier.template.option">
+        <field name="name">VENTA MATERIAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">309</field>
+    </record>
+
+    <record id="seur_311" model="delivery.carrier.template.option">
+        <field name="name">INTERNACIONAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">311</field>
+    </record>
+
+    <record id="seur_313" model="delivery.carrier.template.option">
+        <field name="name">OTROS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">313</field>
+    </record>
+
+    <record id="seur_401" model="delivery.carrier.template.option">
+        <field name="name">VENTA VALIJA I</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">401</field>
+    </record>
+
+    <record id="seur_403" model="delivery.carrier.template.option">
+        <field name="name">VENTA VALIJA IV</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">403</field>
+    </record>
+
+    <record id="seur_405" model="delivery.carrier.template.option">
+        <field name="name">PAQUETE-25</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">405</field>
+    </record>
+
+    <record id="seur_407" model="delivery.carrier.template.option">
+        <field name="name">PAQUETE-50</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">407</field>
+    </record>
+
+    <record id="seur_409" model="delivery.carrier.template.option">
+        <field name="name">PAQUETE-5</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">409</field>
+    </record>
+
+    <record id="seur_411" model="delivery.carrier.template.option">
+        <field name="name">PAQUETE-10</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">411</field>
+    </record>
+
+    <record id="seur_415" model="delivery.carrier.template.option">
+        <field name="name">CUOTA SUSCRIPCION</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">415</field>
+    </record>
+
+    <record id="seur_701" model="delivery.carrier.template.option">
+        <field name="name">ANULACIONES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">701</field>
+    </record>
+
+    <record id="seur_903" model="delivery.carrier.template.option">
+        <field name="name">DTO RAPPEL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">903</field>
+    </record>
+
+    <record id="seur_909" model="delivery.carrier.template.option">
+        <field name="name">CARGOS VARIOS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">909</field>
+    </record>
+
+    <record id="seur_999" model="delivery.carrier.template.option">
+        <field name="name">PROVISIONAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">service</field>
+        <field name="code">999</field>
+    </record>
+
+    <record id="seur_002" model="delivery.carrier.template.option">
+        <field name="name">ESTANDAR</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">002</field>
+    </record>
+
+    <record id="seur_004" model="delivery.carrier.template.option">
+        <field name="name">MULTIPACK</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">004</field>
+    </record>
+
+    <record id="seur_006" model="delivery.carrier.template.option">
+        <field name="name">MULTI BOX</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">006</field>
+    </record>
+
+    <record id="seur_008" model="delivery.carrier.template.option">
+        <field name="name">VALIJA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">008</field>
+    </record>
+
+    <record id="seur_010" model="delivery.carrier.template.option">
+        <field name="name">CORREO INTERNO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">010</field>
+    </record>
+
+    <record id="seur_012" model="delivery.carrier.template.option">
+        <field name="name">RS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">012</field>
+    </record>
+
+    <record id="seur_014" model="delivery.carrier.template.option">
+        <field name="name">EBAY</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">014</field>
+    </record>
+
+    <record id="seur_016" model="delivery.carrier.template.option">
+        <field name="name">DEVOLUCION CE</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">016</field>
+    </record>
+
+    <record id="seur_018" model="delivery.carrier.template.option">
+        <field name="name">FRIO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">018</field>
+    </record>
+
+    <record id="seur_020" model="delivery.carrier.template.option">
+        <field name="name">TELEFONIA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">020</field>
+    </record>
+
+    <record id="seur_022" model="delivery.carrier.template.option">
+        <field name="name">MEDIAS CARGAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">022</field>
+    </record>
+
+    <record id="seur_024" model="delivery.carrier.template.option">
+        <field name="name">ARMAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">024</field>
+    </record>
+
+    <record id="seur_026" model="delivery.carrier.template.option">
+        <field name="name">TIENDAS EBAY</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">026</field>
+    </record>
+
+    <record id="seur_028" model="delivery.carrier.template.option">
+        <field name="name">CLINIC FRIO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">028</field>
+    </record>
+
+    <record id="seur_030" model="delivery.carrier.template.option">
+        <field name="name">EBAY PDV (R+E)</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">030</field>
+    </record>
+
+    <record id="seur_032" model="delivery.carrier.template.option">
+        <field name="name">LOCAL B</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">032</field>
+    </record>
+
+    <record id="seur_034" model="delivery.carrier.template.option">
+        <field name="name">CARGAS COMPLETAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">034</field>
+    </record>
+
+    <record id="seur_036" model="delivery.carrier.template.option">
+        <field name="name">SEUR BICI</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">036</field>
+    </record>
+
+    <record id="seur_038" model="delivery.carrier.template.option">
+        <field name="name">SEUR ALSA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">038</field>
+    </record>
+
+    <record id="seur_040" model="delivery.carrier.template.option">
+        <field name="name">BUZON FACTURAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">040</field>
+    </record>
+
+    <record id="seur_042" model="delivery.carrier.template.option">
+        <field name="name">BUZON REMESAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">042</field>
+    </record>
+
+    <record id="seur_044" model="delivery.carrier.template.option">
+        <field name="name">REGULARIZACION REEMBOLSOS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">044</field>
+    </record>
+
+    <record id="seur_046" model="delivery.carrier.template.option">
+        <field name="name">REPOSICION</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">046</field>
+    </record>
+
+    <record id="seur_048" model="delivery.carrier.template.option">
+        <field name="name">PUNTO PACK</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">048</field>
+    </record>
+
+    <record id="seur_050" model="delivery.carrier.template.option">
+        <field name="name">INTERCAMBIO PUB</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">050</field>
+    </record>
+
+    <record id="seur_052" model="delivery.carrier.template.option">
+        <field name="name">MULTI DOC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">052</field>
+    </record>
+
+    <record id="seur_054" model="delivery.carrier.template.option">
+        <field name="name">DOCUMENTOS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">054</field>
+    </record>
+
+    <record id="seur_056" model="delivery.carrier.template.option">
+        <field name="name">MARKET PLACE</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">056</field>
+    </record>
+
+    <record id="seur_058" model="delivery.carrier.template.option">
+        <field name="name">PRODUCTO WEB</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">058</field>
+    </record>
+
+    <record id="seur_060" model="delivery.carrier.template.option">
+        <field name="name">COUR-CHRONOPOST</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">060</field>
+    </record>
+
+    <record id="seur_062" model="delivery.carrier.template.option">
+        <field name="name">COUR-RESTO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">062</field>
+    </record>
+
+    <record id="seur_064" model="delivery.carrier.template.option">
+        <field name="name">PLUS EUROPA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">064</field>
+    </record>
+
+    <record id="seur_066" model="delivery.carrier.template.option">
+        <field name="name">PLUS RESTO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">066</field>
+    </record>
+
+    <record id="seur_068" model="delivery.carrier.template.option">
+        <field name="name">ESTANDAR INTERNACIONAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">068</field>
+    </record>
+
+    <record id="seur_070" model="delivery.carrier.template.option">
+        <field name="name">INTERNACIONAL T</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">070</field>
+    </record>
+
+    <record id="seur_072" model="delivery.carrier.template.option">
+        <field name="name">INTERNACIONAL A</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">072</field>
+    </record>
+
+    <record id="seur_074" model="delivery.carrier.template.option">
+        <field name="name">DOCUMENTOS INTERNACIONAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">074</field>
+    </record>
+
+    <record id="seur_076" model="delivery.carrier.template.option">
+        <field name="name">CLASSIC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">076</field>
+    </record>
+
+    <record id="seur_078" model="delivery.carrier.template.option">
+        <field name="name">SEUR BUROFAX</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">078</field>
+    </record>
+
+    <record id="seur_080" model="delivery.carrier.template.option">
+        <field name="name">WEB INTERNACIONAL</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">080</field>
+    </record>
+
+    <record id="seur_082" model="delivery.carrier.template.option">
+        <field name="name">ECONOMATO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">082</field>
+    </record>
+
+    <record id="seur_084" model="delivery.carrier.template.option">
+        <field name="name">SEUR BUROFAX C CONT</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">084</field>
+    </record>
+
+    <record id="seur_086" model="delivery.carrier.template.option">
+        <field name="name">E-DEVOLUCIONES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">086</field>
+    </record>
+
+    <record id="seur_088" model="delivery.carrier.template.option">
+        <field name="name">E-DEVOLUCIONES TIENDAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">088</field>
+    </record>
+
+    <record id="seur_090" model="delivery.carrier.template.option">
+        <field name="name">SEUR TELEGRAMA</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">090</field>
+    </record>
+
+    <record id="seur_092" model="delivery.carrier.template.option">
+        <field name="name">SEUR TELEGRAMA C CONT</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">092</field>
+    </record>
+
+    <record id="seur_094" model="delivery.carrier.template.option">
+        <field name="name">SEUR TELEGRAMA C ENT</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">094</field>
+    </record>
+
+    <record id="seur_096" model="delivery.carrier.template.option">
+        <field name="name">SEUR TELEGRAMA BASICO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">096</field>
+    </record>
+
+    <record id="seur_098" model="delivery.carrier.template.option">
+        <field name="name">SEUR BUROFAX C ENT</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">098</field>
+    </record>
+
+    <record id="seur_100" model="delivery.carrier.template.option">
+        <field name="name">PROMO WEB</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">100</field>
+    </record>
+
+    <record id="seur_102" model="delivery.carrier.template.option">
+        <field name="name">SEUR BUROFAX BASICO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">102</field>
+    </record>
+
+    <record id="seur_104" model="delivery.carrier.template.option">
+        <field name="name">PREDICT CROSSBORDER</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">104</field>
+    </record>
+
+    <record id="seur_108" model="delivery.carrier.template.option">
+        <field name="name">MUESTRAS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">108</field>
+    </record>
+
+    <record id="seur_110" model="delivery.carrier.template.option">
+        <field name="name">EMPLEADOS SEUR</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">110</field>
+    </record>
+
+    <record id="seur_112" model="delivery.carrier.template.option">
+        <field name="name">SEUR EVC</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">112</field>
+    </record>
+
+    <record id="seur_118" model="delivery.carrier.template.option">
+        <field name="name">VINO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">118</field>
+    </record>
+
+    <record id="seur_120" model="delivery.carrier.template.option">
+        <field name="name">PALLET MARITIMO</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">120</field>
+    </record>
+
+    <record id="seur_122" model="delivery.carrier.template.option">
+        <field name="name">NEUMATICOS B2C</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">122</field>
+    </record>
+
+    <record id="seur_124" model="delivery.carrier.template.option">
+        <field name="name">NEUMATICOS B2B</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">124</field>
+    </record>
+
+    <record id="seur_242" model="delivery.carrier.template.option">
+        <field name="name">MASTER</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">242</field>
+    </record>
+
+    <record id="seur_300" model="delivery.carrier.template.option">
+        <field name="name">LINEAS MANUALES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">300</field>
+    </record>
+
+    <record id="seur_400" model="delivery.carrier.template.option">
+        <field name="name">PALLET</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">400</field>
+    </record>
+
+    <record id="seur_700" model="delivery.carrier.template.option">
+        <field name="name">ANULACIONES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">700</field>
+    </record>
+
+    <record id="seur_900" model="delivery.carrier.template.option">
+        <field name="name">CARGOS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">900</field>
+    </record>
+
+    <record id="seur_902" model="delivery.carrier.template.option">
+        <field name="name">ABONOS</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">902</field>
+    </record>
+
+    <record id="seur_999" model="delivery.carrier.template.option">
+        <field name="name">PROVISIONALES</field>
+        <field name="description"></field>
+        <field name="carrier_type">seur</field>
+        <field name="option_type">product</field>
+        <field name="code">999</field>
+    </record>
+
+</odoo>

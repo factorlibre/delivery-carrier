@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<odoo>
+    <data noupdate="1">
+
+        <record model="ir.cron" id="check_tracking_status_cron">
+            <field name="name">Check Picking Tracking Status Seur</field>
+            <field name="state">code</field>
+            <field name="interval_number">6</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="False"/>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="code"><![CDATA[
+model._check_tracking_status_seur_cron()
+]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>
