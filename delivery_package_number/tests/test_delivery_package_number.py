@@ -66,9 +66,7 @@ class TestDeliveryPackageNumber(TransactionCase):
         picking = order.picking_ids
         picking.move_ids.quantity_done = 2
         picking.number_of_packages = 2
-        action = picking.with_context(
-            test_delivery_package_number=True
-        ).button_validate()
+        action = picking.button_validate()
         backorder_wizard = Form(
             self.env[action["res_model"]].with_context(**action["context"])
         ).save()
