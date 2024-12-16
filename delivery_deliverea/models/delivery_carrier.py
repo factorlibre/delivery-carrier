@@ -578,7 +578,10 @@ class DeliveryCarrier(models.Model):
         deliverea_state = self.env["deliverea.state"].search(
             [("code", "=", tracking.get("code"))]
         )
-        picking.delivery_state = deliverea_state.delivery_state
+        delivery_state = deliverea_state.delivery_state if deliverea_state else False
+        if delivery_state == "incidence":
+            delivery_state = "incident"
+        picking.delivery_state = delivery_state
         if picking.delivery_state == "customer_delivered":
             picking.date_delivered = datetime.strftime(
                 datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT

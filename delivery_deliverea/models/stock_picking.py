@@ -45,19 +45,19 @@ class StockPicking(models.Model):
                 deliverea_state = self.env["deliverea.state"].search(
                     [("code", "=", data.get("trackingCode"))]
                 )
+                delivery_state = (
+                    deliverea_state.delivery_state if deliverea_state else False
+                )
+                if delivery_state == "incidence":
+                    delivery_state = "incident"
                 picking_id.write(
                     {
-                        "delivery_state": (
-                            deliverea_state.delivery_state if deliverea_state else False
-                        ),
-                        "date_delivered": (
-                            datetime.strftime(
-                                datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT
-                            )
-                            if deliverea_state
-                            and deliverea_state.delivery_state == "customer_delivered"
-                            else False
-                        ),
+                        "delivery_state": delivery_state,
+                        "date_delivered": datetime.strftime(
+                            datetime.now(), DEFAULT_SERVER_DATETIME_FORMAT
+                        )
+                        if delivery_state == "customer_delivered"
+                        else False,
                         "carrier_tracking_url": data.get("advancedTrackingUrl"),
                         "tracking_state": "[{}] {}".format(
                             data.get("trackingCode"), data.get("trackingDetails")
