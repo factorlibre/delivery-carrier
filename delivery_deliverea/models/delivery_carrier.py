@@ -400,7 +400,7 @@ class DeliveryCarrier(models.Model):
             "insuranceValue": "0.0 EUR",
             "exchange": carrier.deliverea_exchange,
         }
-        for parameter in service.deliverea_parameters:
+        for parameter in service.deliverea_parameters_ids:
             if parameter.name in values.keys():
                 if parameter.type in ("ignored", "unsupported"):
                     del values[parameter.name]
@@ -619,3 +619,20 @@ class DeliveryCarrier(models.Model):
             bulky["incoterm"]["code"] = incoterm_code
             payload["bulky"] = bulky
         return payload
+
+    def deliverea_check_parameters(self, parameter):
+        # this function is for check the parameters and auto check the checkbox
+        parameters_key = {
+            "notificationViaSMS": "deliverea_notifications_sms",
+            "notificationViaEmail": "deliverea_notifications_email",
+            "saturdayDelivery": "deliverea_saturday_delivery",
+            "hideSender": "deliverea_hide_sender",
+            "returnLabel": "deliverea_return_label",
+            "returnProofOfDelivery": "deliverea_return_proof_delivery",
+        }
+        param = parameters_key.get(parameter.name)
+        if param:
+            if parameter.type == "unsupported":
+                self[param] = False
+            elif parameter.type == "required":
+                self[param] = True
