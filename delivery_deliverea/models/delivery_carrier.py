@@ -36,6 +36,7 @@ parameter_keys = {
     "hideSender": "deliverea_hide_sender",
     "returnLabel": "deliverea_return_label",
     "returnProofOfDelivery": "deliverea_return_proof_delivery",
+    "exchange":"deliverea_exchange"
 }
 
 
@@ -140,6 +141,7 @@ class DeliveryCarrier(models.Model):
     deliverea_return_label_readonly = fields.Boolean()
     deliverea_return_proof_delivery_readonly = fields.Boolean()
     deliverea_hide_sender_readonly = fields.Boolean()
+    deliverea_exchange_readonly = fields.Boolean()
 
     def deliverea_get_distribution_centers(self):
         deliverea_request = DelivereaRequest(self)
