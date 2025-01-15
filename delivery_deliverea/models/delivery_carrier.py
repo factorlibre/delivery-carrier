@@ -29,6 +29,15 @@ MANDATORY_PAYLOAD_FIELDS = (
     "clientReference",
 )
 
+parameter_keys = {
+    "notificationViaSMS": "deliverea_notifications_sms",
+    "notificationViaEmail": "deliverea_notifications_email",
+    "saturdayDelivery": "deliverea_saturday_delivery",
+    "hideSender": "deliverea_hide_sender",
+    "returnLabel": "deliverea_return_label",
+    "returnProofOfDelivery": "deliverea_return_proof_delivery",
+}
+
 
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
@@ -76,32 +85,44 @@ class DeliveryCarrier(models.Model):
         help="Default weight, height, width and length for packages",
     )
     deliverea_notifications_sms = fields.Boolean(
+        store=True,
         string="Notify by sms",
         help="The carrier will send info sms(s) to the final customer",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_notifications_email = fields.Boolean(
+        store=True,
         string="Notify by email",
         help="The carrier will send info email(s) to the final customer",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_saturday_delivery = fields.Boolean(
+        store=True,
         string="Saturday Delivery",
         help="Whether or not the expedition should be delivered on Saturday"
         " or wait until next Monday (availability depends on carrier and service)",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_return_label = fields.Boolean(
+        store=True,
         string="Return Label",
         help="Whether or not to include dormant return label in case the final customer"
         " wants to return the expedition (availability depends on carrier and service)",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_return_proof_delivery = fields.Boolean(
+        store=True,
         string="Return Proof Delivery",
         help="Whether or not to a proof of delivery should be returned"
         " back to origin (availability depends on carrier and service)",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_hide_sender = fields.Boolean(
+        store=True,
         string="Hide Sender",
         help="Whether or not to hide sender information in the printed label"
         " (availability depends on carrier and service)",
+        compute="_compute_deliverea_parameter",
     )
     deliverea_carrier_service_id = fields.Many2one(
         comodel_name="carrier.deliverea.service",
@@ -113,6 +134,12 @@ class DeliveryCarrier(models.Model):
         " another package has to be picked up from the final client and will be sent"
         " back to the original sender. Availability depends on carrier and service)",
     )
+    deliverea_notifications_sms_readonly = fields.Boolean()
+    deliverea_notifications_email_readonly = fields.Boolean()
+    deliverea_saturday_delivery_readonly = fields.Boolean()
+    deliverea_return_label_readonly = fields.Boolean()
+    deliverea_return_proof_delivery_readonly = fields.Boolean()
+    deliverea_hide_sender_readonly = fields.Boolean()
 
     def deliverea_get_distribution_centers(self):
         deliverea_request = DelivereaRequest(self)
@@ -620,19 +647,28 @@ class DeliveryCarrier(models.Model):
             payload["bulky"] = bulky
         return payload
 
+
     def deliverea_check_parameters(self, parameter):
         # this function is for check the parameters and auto check the checkbox
-        parameters_key = {
-            "notificationViaSMS": "deliverea_notifications_sms",
-            "notificationViaEmail": "deliverea_notifications_email",
-            "saturdayDelivery": "deliverea_saturday_delivery",
-            "hideSender": "deliverea_hide_sender",
-            "returnLabel": "deliverea_return_label",
-            "returnProofOfDelivery": "deliverea_return_proof_delivery",
-        }
+        parameters_key = parameter_keys
         param = parameters_key.get(parameter.name)
         if param:
             if parameter.type == "unsupported":
-                self[param] = False
+                self.write({param: False})
+                self[param + "_readonly"] = True
             elif parameter.type == "required":
-                self[param] = True
+                self.write({param: True})
+                self[param + "_readonly"] = True
+            else:
+                self[param + "_readonly"] = False
+
+    @api.depends("deliverea_carrier_service_id")
+    def _compute_deliverea_parameter(self):
+        parameter_key_list = list(parameter_keys.keys())
+        parameters = (
+            self.deliverea_carrier_service_id.deliverea_parameters_ids.filtered(
+                lambda a: a.name in parameter_key_list
+            )
+        )
+        for parameter in parameters:
+            self.deliverea_check_parameters(parameter)
