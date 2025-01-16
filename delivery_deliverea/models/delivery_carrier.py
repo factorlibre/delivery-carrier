@@ -223,8 +223,6 @@ class DeliveryCarrier(models.Model):
             else:
                 if parameter_id.type != parameter_type:
                     parameter_id.write({"type": parameter_type})
-            self.deliverea_check_parameters(parameter_id)
-
     def _create_service(
         self, carrier_code, service_code, service_parameter, active_service
     ):
@@ -290,6 +288,7 @@ class DeliveryCarrier(models.Model):
                         carrier_code, service_code, service_parameter, active_service
                     )
                 self.manage_deliverea_params(service_id, service_parameter)
+        self._compute_deliverea_parameter()
 
     def _delete_empty_values(self, values):
         delete = []
@@ -654,15 +653,17 @@ class DeliveryCarrier(models.Model):
         # this function is for check the parameters and auto check the checkbox
         parameters_key = parameter_keys
         param = parameters_key.get(parameter.name)
+        param_readonly = param + "_readonly"
+        param_state = self[param]
+        readonly_state = self[param + "_readonly"]
         if param:
             if parameter.type == "unsupported":
-                self.write({param: False})
-                self[param + "_readonly"] = True
+                param_state = False
+                readonly_state = True
             elif parameter.type == "required":
-                self.write({param: True})
-                self[param + "_readonly"] = True
-            else:
-                self[param + "_readonly"] = False
+                param_state = True
+                readonly_state = True
+            self.write({param: param_state, param_readonly: readonly_state})
 
     @api.depends("deliverea_carrier_service_id")
     def _compute_deliverea_parameter(self):
