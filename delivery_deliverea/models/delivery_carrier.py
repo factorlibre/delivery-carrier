@@ -1,6 +1,7 @@
 # Copyright 2022 FactorLibre - Jorge Martínez <jorge.martinez@factorlibre.com>
 # Copyright 2022 FactorLibre - Zahra Velasco <zahra.velasco@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import base64
 import logging
 from datetime import datetime
 
@@ -403,7 +404,7 @@ class DeliveryCarrier(models.Model):
             "shippingDate": datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "+00:00",
             "description": carrier.deliverea_description,
             "totalAmount": "{} {}".format(
-                abs(picking.sale_id.amount_total) if picking.sale_id else 0,
+                abs(picking.total_amount) if picking.sale_id else 0,
                 picking.sale_id.currency_id.name or self.company_id.currency_id.name,
             ),
             "parcels": self._get_deliverea_parcel_info(carrier, picking),
@@ -418,6 +419,21 @@ class DeliveryCarrier(models.Model):
         self._check_mandatory_fields(payload, MANDATORY_SENDER_FIELDS, carrier)
         return payload
 
+    def check_invoice_on_call(self, picking):
+        groups = picking.partner_id.country_id.country_group_ids
+        for group in groups:
+            if group.send_invoice_on_call:
+                return True
+
+    def _prepare_deliverea_invoice(self, picking):
+        paperless_report = picking.carrier_id.paperless_report
+        lang = picking.partner_id.lang
+        if paperless_report:
+            report, extension = paperless_report.with_context(
+                force_lang=lang
+            )._render_qweb_pdf(paperless_report, picking.id)
+            return base64.b64encode(report).decode("utf-8")
+
     def deliverea_send_shipping(self, pickings):
         res = []
         deliverea_request = DelivereaRequest(self)
@@ -425,6 +441,16 @@ class DeliveryCarrier(models.Model):
             if picking.picking_type_code == "outgoing":
                 vals = self._prepare_deliverea_order(picking)
                 response = deliverea_request.create_shipment(vals)
+                if self.check_invoice_on_call(picking):
+                    report = self._prepare_deliverea_invoice(picking)
+                    if report:
+                        deliverea_request.send_invoice(
+                            {
+                                "file": report,
+                                "number": response.get("delivereaReference"),
+                                "totalAmount": picking.total_amount,
+                            }
+                        )
                 picking.write(
                     {
                         "deliverea_reference": response.get("delivereaReference", ""),

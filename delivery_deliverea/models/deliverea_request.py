@@ -25,6 +25,7 @@ class DelivereaRequest(object):
             "carrier_services_integrations": path
             + "carriers/{carrierCode}/integrations/{integration_code}",
             "create_shipment": path + "shipments",
+            "send_invoice": path + "invoices",
             "delete_shipment": path + "shipments/{delivereaReference}",
             "get_shipment_label": path + "shipments/{delivereaReference}/label",
             "create_return": path + "returns",
@@ -142,6 +143,12 @@ class DelivereaRequest(object):
     def create_shipment(self, vals):
         res = self._send_api_request(
             request_type="POST", url=self.urls["create_shipment"], data=vals
+        )
+        return res.json()
+
+    def send_invoice(self, vals):
+        res = self._send_api_request(
+            request_type="POST", url=self.urls["send_invoice"], data=vals
         )
         return res.json()
 
