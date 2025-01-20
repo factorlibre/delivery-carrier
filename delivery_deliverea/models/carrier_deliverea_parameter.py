@@ -17,3 +17,4 @@ class CarrierDeliveaParameter(models.Model):
             ("unsupported", "Unsupported"),
         ],
     )
+    service_id = fields.Many2one("carrier.deliverea.service")
