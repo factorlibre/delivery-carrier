@@ -439,11 +439,14 @@ class DeliveryCarrier(models.Model):
     def _prepare_deliverea_invoice(self, picking):
         paperless_report = picking.carrier_id.paperless_report
         lang = picking.partner_id.lang
-        if paperless_report:
-            report, extension = paperless_report.with_context(
-                force_lang=lang
-            )._render_qweb_pdf(paperless_report, picking.id)
-            return base64.b64encode(report).decode("utf-8")
+        if not paperless_report:
+            raise UserError(
+                _("U need to configure a paperless report or disable send invoice on call")
+            )
+        report, extension = paperless_report.with_context(
+            force_lang=lang
+        )._render_qweb_pdf(paperless_report, picking.id)
+        return base64.b64encode(report).decode("utf-8")
 
     def deliverea_send_shipping(self, pickings):
         res = []
@@ -454,15 +457,14 @@ class DeliveryCarrier(models.Model):
                 vals = self._prepare_deliverea_order(picking)
                 if self.check_invoice_on_call(picking):
                     report = self._prepare_deliverea_invoice(picking)
-                    if report:
-                        uid = deliverea_request.send_invoice(
-                            {
-                                "file": report,
-                                "number": picking.name,
-                                "totalAmount": picking.total_amount,
-                            }
-                        )
-                        vals = self.add_deliverea_invoice(vals, uid.get("id"))
+                    uid = deliverea_request.send_invoice(
+                        {
+                            "file": report,
+                            "number": picking.name,
+                            "totalAmount": picking.total_amount,
+                        }
+                    )
+                    vals = self.add_deliverea_invoice(vals, uid.get("id"))
                 response = deliverea_request.create_shipment(vals)
                 picking.write(
                     {

@@ -585,6 +585,13 @@ msgstr ""
 "Deliverea o cuando se deseen actualizar esos campos."
 
 #. module: delivery_deliverea
+#. odoo-python
+#: code:addons/delivery_deliverea/models/delivery_carrier.py:0
+#, python-format
+msgid "U need to configure a paperless report or disable send invoice on call"
+msgstr "Necesitas configurar el informe paperless en el transportista o deshabilitar el envio de facturas"
+
+#. module: delivery_deliverea
 #: model:ir.model.fields,field_description:delivery_deliverea.field_deliverea_distribution_center__zip
 msgid "Zip"
 msgstr "C.P"
