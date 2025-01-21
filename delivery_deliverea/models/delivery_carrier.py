@@ -1,6 +1,7 @@
 # Copyright 2022 FactorLibre - Jorge Martínez <jorge.martinez@factorlibre.com>
 # Copyright 2022 FactorLibre - Zahra Velasco <zahra.velasco@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import base64
 import logging
 from datetime import datetime
 
@@ -474,7 +475,7 @@ class DeliveryCarrier(models.Model):
             "shippingDate": datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "+00:00",
             "description": carrier.deliverea_description,
             "totalAmount": "{} {}".format(
-                abs(picking.sale_id.amount_total) if picking.sale_id else 0,
+                abs(picking.total_amount) if picking.sale_id else 0,
                 picking.sale_id.currency_id.name or self.company_id.currency_id.name,
             ),
             "parcels": self._get_deliverea_parcel_info(carrier, picking),
@@ -490,12 +491,52 @@ class DeliveryCarrier(models.Model):
         self._check_mandatory_fields(payload, MANDATORY_SENDER_FIELDS, carrier)
         return payload
 
+    def add_deliverea_invoice(self, payload, invoice_uid):
+        payload.update(
+            {
+                "customs": {
+                    "invoiceId": invoice_uid,
+                }
+            }
+        )
+        return payload
+
+    def check_invoice_on_call(self, picking):
+        groups = picking.partner_id.country_id.country_group_ids
+        for group in groups:
+            if group.send_invoice_on_call:
+                return True
+        return False
+
+    def _prepare_deliverea_invoice(self, picking):
+        paperless_report = picking.carrier_id.paperless_report
+        lang = picking.partner_id.lang
+        if not paperless_report:
+            raise UserError(
+                _("U need to configure a paperless report or disable send invoice on call")
+            )
+        report, extension = paperless_report.with_context(
+            force_lang=lang
+        )._render_qweb_pdf(paperless_report, picking.id)
+        return base64.b64encode(report).decode("utf-8")
+
     def deliverea_send_shipping(self, pickings):
         res = []
+        uid = {}
         deliverea_request = DelivereaRequest(self)
         for picking in pickings:
             if picking.picking_type_code == "outgoing":
                 vals = self._prepare_deliverea_order(picking)
+                if self.check_invoice_on_call(picking):
+                    report = self._prepare_deliverea_invoice(picking)
+                    uid = deliverea_request.send_invoice(
+                        {
+                            "file": report,
+                            "number": picking.name,
+                            "totalAmount": picking.total_amount,
+                        }
+                    )
+                    vals = self.add_deliverea_invoice(vals, uid.get("id"))
                 response = deliverea_request.create_shipment(vals)
                 picking.write(
                     {
