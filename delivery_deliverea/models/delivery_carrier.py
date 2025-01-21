@@ -388,7 +388,7 @@ class DeliveryCarrier(models.Model):
                     del values["carrierNotifications"]
         return values
 
-    def _prepare_deliverea_order(self, picking, invoice_uid=False):
+    def _prepare_deliverea_order(self, picking):
         carrier = picking.carrier_id
         service = carrier.deliverea_carrier_service_id
         request_type = "to" if picking.picking_type_code == "outgoing" else "from"
@@ -415,16 +415,18 @@ class DeliveryCarrier(models.Model):
                 or "",
             },
         }
-        if invoice_uid:
-            payload.update(
-                {
-                    "customs": {
-                        "invoiceId": invoice_uid,
-                    }
-                }
-            )
         self._delete_empty_values(payload)
         self._check_mandatory_fields(payload, MANDATORY_SENDER_FIELDS, carrier)
+        return payload
+
+    def add_deliverea_invoice(self, payload, invoice_uid):
+        payload.update(
+            {
+                "customs": {
+                    "invoiceId": invoice_uid,
+                }
+            }
+        )
         return payload
 
     def check_invoice_on_call(self, picking):
@@ -432,6 +434,7 @@ class DeliveryCarrier(models.Model):
         for group in groups:
             if group.send_invoice_on_call:
                 return True
+        return False
 
     def _prepare_deliverea_invoice(self, picking):
         paperless_report = picking.carrier_id.paperless_report
@@ -444,10 +447,11 @@ class DeliveryCarrier(models.Model):
 
     def deliverea_send_shipping(self, pickings):
         res = []
-        uid = False
+        uid = {}
         deliverea_request = DelivereaRequest(self)
         for picking in pickings:
             if picking.picking_type_code == "outgoing":
+                vals = self._prepare_deliverea_order(picking)
                 if self.check_invoice_on_call(picking):
                     report = self._prepare_deliverea_invoice(picking)
                     if report:
@@ -458,7 +462,7 @@ class DeliveryCarrier(models.Model):
                                 "totalAmount": picking.total_amount,
                             }
                         )
-                vals = self._prepare_deliverea_order(picking, invoice_uid=uid)
+                        vals = self.add_deliverea_invoice(vals, uid.get("id"))
                 response = deliverea_request.create_shipment(vals)
                 picking.write(
                     {
