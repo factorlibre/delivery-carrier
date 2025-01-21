@@ -388,7 +388,7 @@ class DeliveryCarrier(models.Model):
                     del values["carrierNotifications"]
         return values
 
-    def _prepare_deliverea_order(self, picking):
+    def _prepare_deliverea_order(self, picking, invoice_uid=False):
         carrier = picking.carrier_id
         service = carrier.deliverea_carrier_service_id
         request_type = "to" if picking.picking_type_code == "outgoing" else "from"
@@ -415,6 +415,14 @@ class DeliveryCarrier(models.Model):
                 or "",
             },
         }
+        if invoice_uid:
+            payload.update(
+                {
+                    "customs": {
+                        "invoiceId": invoice_uid,
+                    }
+                }
+            )
         self._delete_empty_values(payload)
         self._check_mandatory_fields(payload, MANDATORY_SENDER_FIELDS, carrier)
         return payload
@@ -436,21 +444,22 @@ class DeliveryCarrier(models.Model):
 
     def deliverea_send_shipping(self, pickings):
         res = []
+        uid = False
         deliverea_request = DelivereaRequest(self)
         for picking in pickings:
             if picking.picking_type_code == "outgoing":
-                vals = self._prepare_deliverea_order(picking)
-                response = deliverea_request.create_shipment(vals)
                 if self.check_invoice_on_call(picking):
                     report = self._prepare_deliverea_invoice(picking)
                     if report:
-                        deliverea_request.send_invoice(
+                        uid = deliverea_request.send_invoice(
                             {
                                 "file": report,
-                                "number": response.get("delivereaReference"),
+                                "number": picking.name,
                                 "totalAmount": picking.total_amount,
                             }
                         )
+                vals = self._prepare_deliverea_order(picking, invoice_uid=uid)
+                response = deliverea_request.create_shipment(vals)
                 picking.write(
                     {
                         "deliverea_reference": response.get("delivereaReference", ""),
