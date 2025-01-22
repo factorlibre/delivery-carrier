@@ -211,7 +211,7 @@ class DeliveryCarrier(models.Model):
                     ("name", "=", parameter_name),
                     # ("type", "=", parameter_type),
                     ("service_id", "=", service_id.id),
-                ]
+                ], limit=1
             )
             if not parameter_id:
                 self.env["carrier.deliverea.parameter"].create(
@@ -286,7 +286,7 @@ class DeliveryCarrier(models.Model):
                     {},
                 )
                 if not service_id:
-                    self._create_service(
+                    service_id = self._create_service(
                         carrier_code, service_code, service_parameter, active_service
                     )
                 self.manage_deliverea_params(service_id, service_parameter)
