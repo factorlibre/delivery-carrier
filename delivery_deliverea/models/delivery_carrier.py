@@ -211,7 +211,7 @@ class DeliveryCarrier(models.Model):
                     ("name", "=", parameter_name),
                     # ("type", "=", parameter_type),
                     ("service_id", "=", service_id.id),
-                ]
+                ], limit=1
             )
             if not parameter_id:
                 self.env["carrier.deliverea.parameter"].create(
