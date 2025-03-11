@@ -5,6 +5,7 @@
 import logging
 
 from odoo import fields, models
+from odoo.tools.float_utils import float_compare
 
 _logger = logging.getLogger(__name__)
 
@@ -25,6 +26,7 @@ class StockMoveLine(models.Model):
         total_weight = 0
         kg = self.env.ref("uom.product_uom_kgm").id
         units = self.env.ref("uom.product_uom_unit").id
+        precision_digits = self.env["decimal.precision"].precision_get("Stock Weight")
         allowed = (False, kg, units)
         cant_calc_total = False
         for operation in self:
@@ -39,7 +41,17 @@ class StockMoveLine(models.Model):
             # reserved_qty may be 0 if you don't set move line
             # individually but directly validate the picking
             qty = operation.qty_done or operation.reserved_qty
-            operation.weight = product.weight * qty
+            product_total_weight = product.weight * qty
+
+            if (
+                float_compare(
+                    product_total_weight,
+                    operation.weight,
+                    precision_rounding=precision_digits,
+                )
+                != 0
+            ):
+                operation.weight = product_total_weight
 
             total_weight += operation.weight
 
